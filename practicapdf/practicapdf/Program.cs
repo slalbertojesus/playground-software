@@ -24,11 +24,21 @@ namespace practicapdf
             Document doc = new Document();
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
             doc.Open();
-            PdfPTable table = new PdfPTable(3);
+            PdfPTable table = new PdfPTable(5);
             PdfPCell cell = new PdfPCell(new Phrase("SOLICITUD DE APERTURA DE CREDITO"));
-            cell.Colspan = 3;
+            cell.Colspan = 5;
             cell.HorizontalAlignment = Element.ALIGN_CENTER;
             table.AddCell(cell);
+
+            table.AddCell("No. de vendedor:");
+            table.AddCell("No. de supervisor: ");
+            table.AddCell("Folio: ");
+            table.AddCell("Promoción: ");
+            table.AddCell("Fecha {dd/mm/aa}: ");
+
+            cell = new PdfPCell(new Phrase("Solicitud"));
+            cell.Colspan = 1;
+
             doc.Add(table);
             doc.Close();
             Application.EnableVisualStyles();
