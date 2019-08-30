@@ -13,6 +13,7 @@ namespace practicapdf
 {
     static class Program
     {
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -21,6 +22,8 @@ namespace practicapdf
         {
             FileStream fs = new FileStream
                 ("Chapter1_Example1.pdf", FileMode.Create, FileAccess.Write, FileShare.None);
+            Font font = new Font();
+            font.SetColor(255, 255, 255);
             Document doc = new Document();
             PdfWriter writer = PdfWriter.GetInstance(doc, fs);
             doc.Open();
@@ -34,16 +37,37 @@ namespace practicapdf
             table.AddCell("No. de supervisor: ");
             table.AddCell("Folio: ");
             table.AddCell("Promoción: ");
-            table.AddCell("Fecha {dd/mm/aa}: ");
+            table.AddCell("Fecha:");
 
-            cell = new PdfPCell(new Phrase("Solicitud"));
-            cell.Colspan = 1;
+            PdfPCell SOLICITUD = new PdfPCell(new Phrase("SOLICITUD", font));
+            SOLICITUD.BackgroundColor = BaseColor.BLACK;
+            SOLICITUD.Colspan = 5;
+            SOLICITUD.HorizontalAlignment = Element.ALIGN_CENTER;
+            table.AddCell(SOLICITUD);
 
+            PdfPCell monto = new PdfPCell(new Phrase("Monto solicitado: "));
+            monto.Colspan = 5;
+            table.AddCell("Monto solicitado:");
+            table.AddCell(monto);
+
+            PdfPCell destinoCredito = new PdfPCell(new Phrase("Destino de credito: "));
+            destinoCredito.Colspan = 5;
+            table.AddCell(destinoCredito);
+
+            PdfPCell formaDisposicion = new PdfPCell(new Phrase("Forma de disposición: "));
+            formaDisposicion.Colspan = 5;
+            table.AddCell(formaDisposicion);
+
+            PdfPCell DATOS_PERSONALES = new PdfPCell(new Phrase
+                ("DATOS PERSONALES Y DE IDENTIFICACIÓN DEL SOLICITANTE", font));
+            DATOS_PERSONALES.BackgroundColor = BaseColor.BLACK;
+            DATOS_PERSONALES.Colspan = 5;
+            DATOS_PERSONALES.HorizontalAlignment = Element.ALIGN_CENTER;
+            table.AddCell(DATOS_PERSONALES);
+
+            table.WidthPercentage = 100;
             doc.Add(table);
             doc.Close();
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
         }
     }
 }
