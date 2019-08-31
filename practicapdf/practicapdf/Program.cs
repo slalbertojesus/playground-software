@@ -65,6 +65,18 @@ namespace practicapdf
             DATOS_PERSONALES.HorizontalAlignment = Element.ALIGN_CENTER;
             table.AddCell(DATOS_PERSONALES);
 
+            PdfPCell nombreSolicitante = new PdfPCell(new Phrase("Nombre(s): "));
+            nombreSolicitante.Colspan = 5;
+            table.AddCell("Apellido Paterno: ");
+            table.AddCell("Apellido Materno: ");
+            table.AddCell(nombreSolicitante);
+
+            PdfPCell fechaGeneroCurp = new PdfPCell(new Phrase("Fecha nacimiento: "));
+            fechaGeneroCurp.Colspan = 5;
+            table.AddCell("CURP: ");
+            table.AddCell("Genero: ");
+            table.AddCell(fechaGeneroCurp);
+
             table.WidthPercentage = 100;
             doc.Add(table);
             doc.Close();
