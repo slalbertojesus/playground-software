@@ -169,6 +169,30 @@ namespace practicapdf
             table.AddCell("Horario:");
             table.AddCell(direccionHorario);
 
+            PdfPCell nombreRelacionTelefonoSegundo = new PdfPCell(new Phrase("Telefono: "));
+            nombreRelacionTelefonoSegundo.Colspan = 5;
+            table.AddCell("Nombre:");
+            table.AddCell("Relación:");
+            table.AddCell(nombreRelacionTelefonoSegundo);
+
+            PdfPCell direccionHorarioSegundo = new PdfPCell(new Phrase("Direcicón: "));
+            direccionHorarioSegundo.Colspan = 5;
+            table.AddCell("Horario:");
+            table.AddCell(direccionHorarioSegundo);
+
+            string textoEntrevista = @"Entrevista personal: Comentarios adicionales del promotor sobre la entrevista realizada:
+            ¿Usted desempeña o ha desempeñado funciones públicas en un país extranjero o en territorio nacional, considerando
+            entre otros, alos jefes de estado o de gobierno, lideres políticos, funcionarios gubernamentales de alta jerarquia,
+            judiciales o militares de alta jerarquía, altos ejecutivos de empresas estatales o funcionarios o miembros importantes
+            de partidos políticos?";
+
+            textoEntrevista = textoEntrevista.Replace(Environment.NewLine, String.Empty).Replace("  ", String.Empty);
+
+            Chunk chuckTexto = new Chunk(textoEntrevista);
+            PdfPCell celdaEntrevista = new PdfPCell(new Phrase(chuckTexto));
+            celdaEntrevista.Colspan = 5;
+            celdaEntrevista.HorizontalAlignment = Element.PARAGRAPH;
+            table.AddCell(celdaEntrevista);
 
             table.WidthPercentage = 100;
             doc.Add(table);
