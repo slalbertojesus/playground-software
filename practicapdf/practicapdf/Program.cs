@@ -194,6 +194,61 @@ namespace practicapdf
             celdaEntrevista.HorizontalAlignment = Element.PARAGRAPH;
             table.AddCell(celdaEntrevista);
 
+            PdfPCell respuesta = new PdfPCell(new Phrase("Respuesta: "));
+            respuesta.Colspan = 5   ;
+            table.AddCell(respuesta);
+
+            PdfPCell puestoCargo = new PdfPCell(new Phrase("Cargo: "));
+            puestoCargo.Colspan = 5;
+            table.AddCell("Puesto:");
+            table.AddCell(puestoCargo);
+
+            string preguntaConyuge = @"¿Su cónyuge, concubina, concubinario, o parientes consanguíneos o afines, hasta el segundo
+            grado, tales como padres, hijos, hermanos, abuelos, tíos, primos, cuñados, suegros, yernos o nueras. Se encuentra en el
+            supuesto antes mencionado?";
+
+            preguntaConyuge = preguntaConyuge.Replace(Environment.NewLine, String.Empty).Replace("  ", String.Empty);
+
+            Chunk chuckConyuge = new Chunk(preguntaConyuge);
+            PdfPCell celdaConyuge = new PdfPCell(new Phrase(chuckConyuge));
+            celdaConyuge.Colspan = 5;
+            celdaConyuge.HorizontalAlignment = Element.PARAGRAPH;
+            table.AddCell(celdaConyuge);
+
+            table.AddCell(respuesta);
+
+            PdfPCell nombreConyuge = new PdfPCell(new Phrase("Nombre: "));
+            nombreConyuge.Colspan = 5;
+            table.AddCell("Apellido Paterno:");
+            table.AddCell("Apellido Materno:");
+            table.AddCell(nombreConyuge);
+
+            PdfPCell parentescoPuestoPeriodo = new PdfPCell(new Phrase("Periodo: "));
+            parentescoPuestoPeriodo.Colspan = 5;
+            table.AddCell("Parentesco:");
+            table.AddCell("Puesto:");
+            table.AddCell(parentescoPuestoPeriodo);
+
+            PdfPCell aplicaciones = new PdfPCell(new Phrase("Propietario Real: No aplica: "));
+            aplicaciones.Colspan = 5;
+            table.AddCell("Obligado Solidario: No aplica");
+            table.AddCell("Beneficiario Final:  No aplica");
+            table.AddCell("Proveedor de recursos: No aplica");
+            table.AddCell(aplicaciones);
+
+            string suscrito = @"El sucrito en su calidad de promotor, declara bajo protesta de decir verdad que, en la fecha de la
+            presente solicitud ha cotejado las copiassimples de los documentos que se adjuntan a la presente Solicitud e integran el
+            expediente de identificación de este Cliente, contra sus originales";
+
+            suscrito = suscrito.Replace(Environment.NewLine, String.Empty).Replace("  ", String.Empty);
+
+            Chunk chuckSuscrito = new Chunk(suscrito);
+            PdfPCell celdaSuscrito = new PdfPCell(new Phrase(chuckSuscrito));
+            celdaSuscrito.Colspan = 5;
+            celdaSuscrito.HorizontalAlignment = Element.PARAGRAPH;
+            table.AddCell("Nombre y firma del promotor que realizó la entrevista.");
+            table.AddCell(celdaSuscrito);
+
             table.WidthPercentage = 100;
             doc.Add(table);
             doc.Close();
